@@ -1,8 +1,5 @@
 FROM python:3.9.5-alpine
-# FROM docker:stable
 
-# RUN apk add --no-cache python3 openssl-dev libffi-dev make build-base python3-dev py3-pip bash && \
-#     apk del build-base python3-dev libffi-dev openssl-dev
 RUN apk add --no-cache openssl-dev libffi-dev make build-base py3-pip bash && \
     apk del build-base libffi-dev openssl-dev
 
