@@ -1,4 +1,4 @@
-FROM python:3.9.5-alpine
+FROM python:3.9.7-alpine3.14
 
 RUN apk add --no-cache openssl-dev libffi-dev make build-base py3-pip bash && \
     apk del build-base libffi-dev openssl-dev
