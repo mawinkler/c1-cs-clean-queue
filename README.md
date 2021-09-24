@@ -7,7 +7,7 @@
   - [Support](#support)
   - [Contribute](#contribute)
 
-Cleans the scan queue of Smart Check
+Cleanes the scan queue of Smart Check and removes pending scans. It does now support paging.
 
 ## Run Environment: Docker
 
@@ -23,7 +23,7 @@ docker build -t smartcheck-clean .
 docker run --rm \
   -e USERNAME="admin" \
   -e PASSWORD="trendmicro" \
-  -e URL="192.168.1.121:8443"
+  -e URL="192.168.1.121:8443" \
   smartcheck-clean
 ```
 

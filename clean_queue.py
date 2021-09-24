@@ -10,7 +10,7 @@ username = getenv('USERNAME')
 password = getenv('PASSWORD')
 url = getenv('URL')
 
-large_number = 100000
+large_number = 1000
 
 payload = {
     "user": {
@@ -31,10 +31,21 @@ post_header = {
     "authorization": "Bearer " + token
 }
 
-scans_body = requests.get(f"https://{url}/api/scans?status=pending&limit={large_number}", headers=post_header, verify=False)
-scans = json.loads(scans_body.text)['scans']
+counter = 0
 
-for scan in scans:
-    current_scan = scan['href']
-    print(f"deleting scan {current_scan}")
-    requests.delete(f"https://{url}{current_scan}", headers=post_header, verify=False)
+while (True):
+    scans_body = requests.get(f"https://{url}/api/scans?status=pending&limit={large_number}", headers=post_header, verify=False)
+    scans = json.loads(scans_body.text)['scans']
+
+    if (len(scans) == 0):
+        break
+
+    for scan in scans:
+        current_scan = scan['href']
+        print(f"deleting scan {current_scan}")
+        requests.delete(f"https://{url}{current_scan}", headers=post_header, verify=False)
+        counter += 1
+    
+    print(f"paging")
+
+print(f"cleaned {counter} scans")
